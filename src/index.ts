@@ -1,4 +1,4 @@
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloServer } from "apollo-server";
 // import { typeDefs } from "./typeDefs";
 import { typeDefs } from "src/typeDefs";
 

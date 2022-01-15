@@ -1,33 +1,6 @@
 import { ApolloServer, gql } from "apollo-server";
-
-const typeDefs = gql`
-  type Lesson {
-    name: String
-    mins: Int
-    summary: String
-  }
-
-  type Query {
-    lessons: [Lesson]
-  }
-
-  type Book {
-    title: String
-    author: String
-  }
-
-  type Query {
-    books: [Book]
-  }
-
-  type Mutation {
-    createNewBook(title: String, author: String!): Book
-  }
-
-  type Mutation {
-    submitNewLesson(name: String!, mins: Int!, summary: String): Lesson
-  }
-`;
+// import { typeDefs } from "./typeDefs";
+import { typeDefs } from "src/typeDefs";
 
 const lessons = [
   {
@@ -59,7 +32,12 @@ const resolvers = {
     lessons: () => lessons,
   },
   Mutation: {
-    createNewBook(parent, args, context, info) {
+    createNewBook(
+      _parent: any,
+      args: { title: any; author: any },
+      _context: any,
+      _info: any,
+    ) {
       const book = {
         title: args.title,
         author: args.author,
@@ -69,7 +47,12 @@ const resolvers = {
       return book;
     },
 
-    submitNewLesson(parent, args, context, info) {
+    submitNewLesson(
+      _parent: any,
+      args: { name: any; mins: any; summary: any },
+      _context: any,
+      _info: any,
+    ) {
       const lesson = {
         name: args.name,
         mins: args.mins,
